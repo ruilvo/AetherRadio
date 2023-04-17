@@ -5,14 +5,14 @@ namespace AetherRadio.DspTests;
 [TestFixture]
 public class FftTests
 {
-    private Fft _fft;
+    private FftDouble _fft;
     private int _size;
 
     [SetUp]
     public void Setup()
     {
         _size = 2;
-        _fft = new Fft(_size);
+        _fft = new FftDouble(_size);
     }
 
     [Test]

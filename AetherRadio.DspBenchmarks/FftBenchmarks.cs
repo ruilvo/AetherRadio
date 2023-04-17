@@ -7,12 +7,12 @@ public class FftBenchmarks
 {
     private const int _sampleCount = 1024;
     private readonly float[] _samples;
-    private readonly Fft _fft;
+    private readonly FftDouble _fft;
 
     public FftBenchmarks()
     {
         _samples = new float[_sampleCount];
-        _fft = new Fft(_sampleCount);
+        _fft = new FftDouble(_sampleCount);
 
         _samples[0] = 1.0F;
     }

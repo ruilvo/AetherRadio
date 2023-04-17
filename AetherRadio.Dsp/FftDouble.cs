@@ -1,23 +1,48 @@
-﻿namespace AetherRadio.Dsp;
+﻿using System.Drawing;
+using System.Numerics;
+
+namespace AetherRadio.Dsp;
 
 /// <summary>
 /// A basic decimation-in-frequency FFT
 /// </summary>
-public class Fft
+public class FftDouble
 {
     private readonly int _size;
-    private readonly int _log2Size;
-    private readonly float[] _sinTable;
-    private readonly float[] _cosTable;
+    private readonly int[] bitReverseIndices;
+    private readonly Complex[] twiddleFactors;
 
-    public Fft(int fftSize)
+    public FftDouble(int size)
     {
-        _size = fftSize;
-        _log2Size = (int)Math.Log(fftSize, 2);
-        _sinTable = new float[_size / 2];
-        _cosTable = new float[_size / 2];
+        if (!IsPowerOfTwo(size))
+        {
+            throw new ArgumentException("FFT size must be a power of two");
+        }
 
-        FillTwiddleFactors();
+        _size = size;
+
+        // Compute bit-reversed indices
+        bitReverseIndices = new int[_size];
+        for (int i = 0; i < n_size; i++)
+        {
+            bitReverseIndices[i] = BitReverse(i, _size);
+        }
+    }
+
+    private static bool IsPowerOfTwo(int x)
+    {
+        return (x & (x - 1)) == 0;
+    }
+
+    private static int BitReverse(int n, int bits)
+    {
+        var reversed = 0;
+        for (var i = 0; i < bits; i++)
+        {
+            reversed = (reversed << 1) | (n & 1);
+            n >>= 1;
+        }
+        return reversed;
     }
 
     private void FillTwiddleFactors()
