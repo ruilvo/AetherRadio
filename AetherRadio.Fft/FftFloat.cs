@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
-using System.Numerics;
 
 using AetherRadio.Numerics;
+
 namespace AetherRadio.Fft;
 
 public class FftFloat
@@ -11,7 +11,7 @@ public class FftFloat
 
     public FftFloat(uint length)
     {
-        Debug.Assert(Numerics.Functions.IsPowerOfTwo(length), 
+        Debug.Assert(Functions.IsPowerOfTwo(length),
             "The FFT needs to be a power of two!");
 
         _length = length;
