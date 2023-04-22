@@ -1,6 +1,6 @@
 ﻿namespace AetherRadio.Numerics;
 
-public static class Math
+public static class Functions
 {
     public static bool IsPowerOfTwo(uint value)
     {

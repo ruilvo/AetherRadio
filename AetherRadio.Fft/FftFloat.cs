@@ -11,7 +11,7 @@ public class FftFloat
 
     public FftFloat(uint length)
     {
-        Debug.Assert(Numerics.Math.IsPowerOfTwo(length), 
+        Debug.Assert(Numerics.Functions.IsPowerOfTwo(length), 
             "The FFT needs to be a power of two!");
 
         _length = length;
@@ -39,4 +39,18 @@ public class FftFloat
     }
 
     // TODO(ruilvo): Implement CopyBitReversed and TransformInternal.
+
+    private static void CopyBitReversed(ReadOnlySpan<ComplexFloat> input, Span<ComplexFloat> output)
+    {
+        Debug.Assert(input.Length == output.Length);
+
+        // TODO(ruilvo): Implement the bit-reversal.
+    }
+
+    private void TransformInternal(Span<ComplexFloat> data)
+    {
+        Debug.Assert(data.Length == _length);
+
+        // TODO(ruilvo): Implement the FFT.
+    }
 }
