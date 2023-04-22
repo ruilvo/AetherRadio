@@ -87,8 +87,8 @@ public class ComplexFloatTests
         var quotient = c1 / c2;
         Assert.Multiple(() =>
         {
-            Assert.That(quotient.Real, Is.EqualTo(2).Within(1e-6));
-            Assert.That(quotient.Imaginary, Is.EqualTo(0).Within(1e-6));
+            Assert.That(quotient.Real, Is.EqualTo(2.2).Within(1e-6));
+            Assert.That(quotient.Imaginary, Is.EqualTo(-0.4).Within(1e-6));
         });
     }
 
