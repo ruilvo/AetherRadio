@@ -30,6 +30,8 @@ public class FftFloat
     {
         Debug.Assert(input.Length == _length);
         Debug.Assert(output.Length == _length);
+
+        // TODO(ruilvo): Consider the possibility of in-place transforms.
         Debug.Assert(!input.Overlaps(output));
 
         // Copy the input to the output, bit-reversed
