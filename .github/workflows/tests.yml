@@ -22,3 +22,6 @@ jobs:
 
       - name: Test AetherRadio.Numerics
         run: dotnet test AetherRadio.Numerics.Tests
+
+      - name: Test AetherRadio.Fft
+        run: dotnet test AetherRadio.Fft.Tests
