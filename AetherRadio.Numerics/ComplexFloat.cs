@@ -2,35 +2,28 @@
 
 public struct ComplexFloat
 {
-    float _real;
-    float _imag;
+    private float _real;
+    private float _imag;
 
+    // ReSharper disable once ConvertToAutoPropertyWhenPossible
     public float Real
     {
-        get { return _real; }
-        set { _real = value; }
+        get => _real;
+        set => _real = value;
     }
 
+    // ReSharper disable once ConvertToAutoPropertyWhenPossible
     public float Imaginary
     {
-        get { return _imag; }
-        set { _imag = value; }
+        get => _imag;
+        set => _imag = value;
     }
 
-    public float Magnitude
-    {
-        get { return MathF.Sqrt(_real * _real + _imag * _imag); }
-    }
+    public float Magnitude => MathF.Sqrt(_real * _real + _imag * _imag);
 
-    public float Phase
-    {
-        get { return MathF.Atan2(_imag, _real); }
-    }
+    public float Phase => MathF.Atan2(_imag, _real);
 
-    public ComplexFloat Normalized
-    {
-        get { return this / FromPolar(Magnitude, 0); }
-    }
+    public ComplexFloat Normalized => this / FromPolar(Magnitude, 0);
 
     public ComplexFloat(float real, float imag)
     {

@@ -2,35 +2,28 @@
 
 public struct ComplexDouble
 {
-    double _real;
-    double _imag;
+    private double _real;
+    private double _imag;
 
+    // ReSharper disable once ConvertToAutoPropertyWhenPossible
     public double Real
     {
-        get { return _real; }
-        set { _real = value; }
+        get => _real;
+        set => _real = value;
     }
 
+    // ReSharper disable once ConvertToAutoPropertyWhenPossible
     public double Imaginary
     {
-        get { return _imag; }
-        set { _imag = value; }
+        get => _imag;
+        set => _imag = value;
     }
 
-    public double Magnitude
-    {
-        get { return Math.Sqrt(_real * _real + _imag * _imag); }
-    }
+    public double Magnitude => Math.Sqrt(_real * _real + _imag * _imag);
 
-    public double Phase
-    {
-        get { return Math.Atan2(_imag, _real); }
-    }
+    public double Phase => Math.Atan2(_imag, _real);
 
-    public ComplexDouble Normalized
-    {
-        get { return this / FromPolar(Magnitude, 0); }
-    }
+    public ComplexDouble Normalized => this / FromPolar(Magnitude, 0);
 
     public ComplexDouble(double real, double imag)
     {
