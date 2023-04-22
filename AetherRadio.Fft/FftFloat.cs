@@ -30,6 +30,7 @@ public class FftFloat
     {
         Debug.Assert(input.Length == _length);
         Debug.Assert(output.Length == _length);
+        Debug.Assert(!input.Overlaps(output));
 
         // Copy the input to the output, bit-reversed
         CopyBitReversed(input, output);
@@ -43,6 +44,7 @@ public class FftFloat
     private static void CopyBitReversed(ReadOnlySpan<ComplexFloat> input, Span<ComplexFloat> output)
     {
         Debug.Assert(input.Length == output.Length);
+        Debug.Assert(!input.Overlaps(output));
 
         // TODO(ruilvo): Implement the bit-reversal.
     }
