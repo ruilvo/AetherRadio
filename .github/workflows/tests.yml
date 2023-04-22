@@ -20,10 +20,11 @@ jobs:
         with:
           dotnet-version: "7.0.100"
 
-      - name: Install NUnit console runner
-        run: dotnet tool install --global nunit.console
+      - name: Restore dotnet packages
+        run: dotnet restore
 
-      - name: Build and test
-        run: |
-          dotnet build --configuration Release
-          nunit3-console ./AetherRadio.Numerics.Tests/bin/Release/net7.0/AetherRadio.Numerics.Tests.dll
+      - name: Build the project
+        run: dotnet build --configuration Release
+
+      - name: Test AetherRadio.Numerics
+        run: dotnet test AetherRadio.Numerics.Tests
