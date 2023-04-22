@@ -1,0 +1,29 @@
+name: Run tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "7.0.100"
+
+      - name: Install NUnit console runner
+        run: dotnet tool install --global nunit.console
+
+      - name: Build and test
+        run: |
+          dotnet build --configuration Release
+          nunit3-console ./AetherRadio.Numerics.Tests/bin/Release/net7.0/AetherRadio.Numerics.Tests.dll
