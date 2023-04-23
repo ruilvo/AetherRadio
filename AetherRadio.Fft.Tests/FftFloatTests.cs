@@ -14,16 +14,16 @@ public class FftFloatTests
 
         var input = new ComplexFloat[]
         {
-            new ComplexFloat(1.0F, 0.0F), 
-            new ComplexFloat(0.0F, 0.0F)
+            new(1.0F, 0.0F), 
+            new(0.0F, 0.0F)
         };
 
         var output = new ComplexFloat[size];
 
         var result = new ComplexFloat[]
         {
-            new ComplexFloat(1.0F, 0.0F),
-            new ComplexFloat(0.0F, 0.0F)
+            new(1.0F, 0.0F),
+            new(1.0F, 0.0F)
         };
 
         fft.Transform(input, output);
@@ -46,16 +46,16 @@ public class FftFloatTests
 
         var input = new ComplexFloat[]
         {
-            new ComplexFloat(1.0F, 0.0F),
-            new ComplexFloat(1.0F, 0.0F)
+            new(1.0F, 0.0F),
+            new(1.0F, 0.0F)
         };
 
         var output = new ComplexFloat[size];
 
         var result = new ComplexFloat[]
         {
-            new ComplexFloat(2.0F, 0.0F),
-            new ComplexFloat(0.0F, 0.0F)
+            new(2.0F, 0.0F),
+            new(0.0F, 0.0F)
         };
 
         fft.Transform(input, output);
@@ -78,16 +78,16 @@ public class FftFloatTests
 
         var input = new ComplexFloat[]
         {
-            new ComplexFloat(1.0F, 1.0F),
-            new ComplexFloat(1.0F, 0.0F)
+            new(1.0F, 1.0F),
+            new(1.0F, 0.0F)
         };
 
         var output = new ComplexFloat[size];
 
         var result = new ComplexFloat[]
         {
-            new ComplexFloat(2.0F, 1.0F),
-            new ComplexFloat(0.0F, 1.0F)
+            new(2.0F, 1.0F),
+            new(0.0F, 1.0F)
         };
 
         fft.Transform(input, output);
