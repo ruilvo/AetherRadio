@@ -5,11 +5,13 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AetherRadio.Numerics", "AetherRadio.Numerics\AetherRadio.Numerics.csproj", "{51313F71-9136-452A-9BDD-25F77EEFBF51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetherRadio.Numerics.Tests", "AetherRadio.Numerics.Tests\AetherRadio.Numerics.Tests.csproj", "{7DDE7A78-AA46-424D-8F1C-429082BAF4E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AetherRadio.Numerics.Tests", "AetherRadio.Numerics.Tests\AetherRadio.Numerics.Tests.csproj", "{7DDE7A78-AA46-424D-8F1C-429082BAF4E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetherRadio.Fft", "AetherRadio.Fft\AetherRadio.Fft.csproj", "{A28135FB-09A5-4310-AC31-897250768A09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AetherRadio.Fft", "AetherRadio.Fft\AetherRadio.Fft.csproj", "{A28135FB-09A5-4310-AC31-897250768A09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetherRadio.Fft.Tests", "AetherRadio.Fft.Tests\AetherRadio.Fft.Tests.csproj", "{85D4A794-FEF0-46EA-B593-D78D865E1851}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AetherRadio.Fft.Tests", "AetherRadio.Fft.Tests\AetherRadio.Fft.Tests.csproj", "{85D4A794-FEF0-46EA-B593-D78D865E1851}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetherRadio.Fft.Benchmarks", "AetherRadio.Fft.Benchmarks\AetherRadio.Fft.Benchmarks.csproj", "{340A6BD2-BDB0-4945-BCD4-9B2E8A6154B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{85D4A794-FEF0-46EA-B593-D78D865E1851}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85D4A794-FEF0-46EA-B593-D78D865E1851}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85D4A794-FEF0-46EA-B593-D78D865E1851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{340A6BD2-BDB0-4945-BCD4-9B2E8A6154B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{340A6BD2-BDB0-4945-BCD4-9B2E8A6154B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{340A6BD2-BDB0-4945-BCD4-9B2E8A6154B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{340A6BD2-BDB0-4945-BCD4-9B2E8A6154B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
