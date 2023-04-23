@@ -97,8 +97,7 @@ public class FftFloat
 
                 outBuffer[idx] = (idx % currentFftSize) < (currentFftSize / 2) ?
                     inBuffer[idx] + inBuffer[(int)(idx + halfFftSize)] :
-                    (new ComplexFloat(-1.0F, 0.0F) * inBuffer[idx]
-                        + inBuffer[(int)(idx - halfFftSize)])
+                    (-inBuffer[idx] + inBuffer[(int)(idx - halfFftSize)])
                         * _twiddleFactors[(idx % halfFftSize) * currentTwiddleStride];
             }
             // We half the FFT size at each iteration, double the stride, and swap the buffers.
