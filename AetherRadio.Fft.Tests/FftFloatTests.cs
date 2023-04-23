@@ -5,6 +5,12 @@ namespace AetherRadio.Fft.Tests;
 [TestFixture]
 public class FftFloatTests
 {
+    // TODO(ruilvo): Check below.
+    //  - Test with FFTs of larger sizes.
+    //  - Use the `SequentialAttribute` from NUnit to eliminate the boilerplate code.
+    //    - https://docs.nunit.org/articles/nunit/writing-tests/attributes/sequential.html
+    //    - Write the test values and the results in ValueAttribute's.
+
     [Test]
     public void TestMostBasicFft()
     {
