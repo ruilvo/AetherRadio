@@ -41,9 +41,34 @@ public struct ComplexDouble
         return new ComplexDouble(a.Real + b.Real, a.Imaginary + b.Imaginary);
     }
 
+    public static ComplexDouble operator +(ComplexDouble a, double b)
+    {
+        return new ComplexDouble(a.Real + b, a.Imaginary);
+    }
+
+    public static ComplexDouble operator +(double a, ComplexDouble b)
+    {
+        return b + a;
+    }
+
+    public static ComplexDouble operator -(ComplexDouble a)
+    {
+        return new ComplexDouble(-a.Real, -a.Imaginary);
+    }
+
     public static ComplexDouble operator -(ComplexDouble a, ComplexDouble b)
     {
         return new ComplexDouble(a.Real - b.Real, a.Imaginary - b.Imaginary);
+    }
+
+    public static ComplexDouble operator -(ComplexDouble a, double b)
+    {
+        return new ComplexDouble(a.Real - b, a.Imaginary);
+    }
+
+    public static ComplexDouble operator -(double a, ComplexDouble b)
+    {
+        return b - a;
     }
 
     public static ComplexDouble operator *(ComplexDouble a, ComplexDouble b)
@@ -51,11 +76,30 @@ public struct ComplexDouble
         return FromPolar(a.Magnitude * b.Magnitude, a.Phase + b.Phase);
     }
 
+    public static ComplexDouble operator *(ComplexDouble a, double b)
+    {
+        return new ComplexDouble(a.Real * b, a.Imaginary * b);
+    }
+
+    public static ComplexDouble operator *(double a, ComplexDouble b)
+    {
+        return b * a;
+    }
+
     public static ComplexDouble operator /(ComplexDouble a, ComplexDouble b)
     {
         return FromPolar(a.Magnitude / b.Magnitude, a.Phase - b.Phase);
     }
 
+    public static ComplexDouble operator /(ComplexDouble a, double b)
+    {
+        return a * (1 / b);
+    }
+
+    public static ComplexDouble operator /(double a, ComplexDouble b)
+    {
+        return (1 / a) * b;
+    }
 
     public void Normalize()
     {

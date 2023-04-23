@@ -41,9 +41,34 @@ public struct ComplexFloat
         return new ComplexFloat(a.Real + b.Real, a.Imaginary + b.Imaginary);
     }
 
+    public static ComplexFloat operator +(ComplexFloat a, float b)
+    {
+        return new ComplexFloat(a.Real + b, a.Imaginary);
+    }
+
+    public static ComplexFloat operator +(float a, ComplexFloat b)
+    {
+        return b + a;
+    }
+
+    public static ComplexFloat operator -(ComplexFloat a)
+    {
+        return new ComplexFloat(-a.Real, -a.Imaginary);
+    }
+
     public static ComplexFloat operator -(ComplexFloat a, ComplexFloat b)
     {
         return new ComplexFloat(a.Real - b.Real, a.Imaginary - b.Imaginary);
+    }
+
+    public static ComplexFloat operator -(ComplexFloat a, float b)
+    {
+        return new ComplexFloat(a.Real - b, a.Imaginary);
+    }
+
+    public static ComplexFloat operator -(float a, ComplexFloat b)
+    {
+        return b - a;
     }
 
     public static ComplexFloat operator *(ComplexFloat a, ComplexFloat b)
@@ -51,9 +76,29 @@ public struct ComplexFloat
         return FromPolar(a.Magnitude * b.Magnitude, a.Phase + b.Phase);
     }
 
+    public static ComplexFloat operator *(ComplexFloat a, float b)
+    {
+        return new ComplexFloat(a.Real * b, a.Imaginary * b);
+    }
+
+    public static ComplexFloat operator *(float a, ComplexFloat b)
+    {
+        return b * a;
+    }
+
     public static ComplexFloat operator /(ComplexFloat a, ComplexFloat b)
     {
         return FromPolar(a.Magnitude / b.Magnitude, a.Phase - b.Phase);
+    }
+
+    public static ComplexFloat operator /(ComplexFloat a, float b)
+    {
+        return a * (1 / b);
+    }
+
+    public static ComplexFloat operator /(float a, ComplexFloat b)
+    {
+        return (1 / a) * b;
     }
 
 
