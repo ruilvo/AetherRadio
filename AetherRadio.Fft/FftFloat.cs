@@ -15,7 +15,7 @@ public class FftFloat
             "The FFT needs to be a power of two!");
 
         _length = length;
-        _twiddleFactors = new ComplexFloat[length / 2];
+        _twiddleFactors = new ComplexFloat[_length / 2];
 
         // Compute the twiddle factors
         for (uint i = 0; i < _twiddleFactors.Length; i++)
@@ -46,37 +46,76 @@ public class FftFloat
     {
         Debug.Assert(data.Length == _length);
 
-        var twiddleIdxMultiplier = 1;
-        for (var blockSize = (int)(_length / 2); blockSize > 1; blockSize /= 2)
+        // ---------------------------------------------------------------------
+
+        // Plain english write-up of the algorithm:
+
+        // References:
+        // https://www.researchgate.net/profile/Davinder-Sharma/publication/235678991/figure/fig5/AS:666775184211975@1535983000324/Signal-Flow-Diagram-for-16-point-Radix-2-DIF-FFT-Algorithm.png
+        // https://digitalsystemdesign.in/wp-content/uploads/2021/10/FFT16.png
+        // The first shows the multiplications factors much better,
+        // the second shows the twiddle-factor reuse.
+
+        // We can reuse the twiddle factors for every stage of the FFT by using a stride.
+        // Example, in a 16-point, radix-2, DIF FFT, in the first stage, we have
+        // _twiddleFactors[0..8]. In the second stage, we have _twiddleFactors[0, 2, 4, 6].
+        // In the third stage, we have _twiddleFactors[0, 4]. Finally, in the fourth stage,
+        // we have _twiddleFactors[0].
+
+        // In this radix-2, DIF FFT, at every stage, the result at some index k is:
+        // k % currentFftSize < (currentFftSize / 2) ?
+        //  data[k] + data[k + currentFftSize / 2] :
+        //      (-1.0 * data[k] + data[k - currentFftSize / 2]) * W^k_N,
+        // where W^k_N is the twiddle factor at index [(k % halfFftSize) * currentTwiddleStride].
+
+        // Since we have to replace the values in the array, we need a temporary buffer.
+        // We have to switch between the buffer and the output, and if we end up with the FFT
+        // in the buffer, we have to copy the result back to the output.
+
+        // ---------------------------------------------------------------------
+
+        // Buffer for the FFT
+        var buffer = new ComplexFloat[_length]; // TODO(ruilvo): Make this buffer a member of the class.
+
+        // The current FFT size.
+        var currentFftSize = _length;
+
+        // The current stride for the twiddle factors.
+        var currentTwiddleStride = 1;
+
+        Span<ComplexFloat> inBuffer = data;
+        Span<ComplexFloat> outBuffer = buffer;
+
+        // Let's perform the FFT, stage by stage, until we reach the last stage (size 2).
+        while (currentFftSize > 1)
         {
-            // Each blockSize, skip blockSize elements. 
-            for (var blockOffset = 0; blockOffset < _length; blockOffset += blockSize)
+            // We iterate over the input buffer, and write the result to the output buffer.
+            // TODO(ruilvo): Create and bechmark LINQ and SIMD versions.
+            for (var idx = 0; idx < currentFftSize; ++idx)
             {
-                for (var i = 0; i < blockSize; ++i)
-                {
-                    var idxA = blockOffset + i;
-                    var idxB = idxA + blockSize;
-                    var idxT = i * twiddleIdxMultiplier;
+                var halfFftSize = currentFftSize / 2;
 
-                    // Perform the butterfly operation
-                    // A = a + b
-                    // B = (a - b)*W^k_N
-                    // where k is a "skip" multiplier, named twiddleIdxMultiplier here,
-                    // and N is the length of the FFT, named _length here.
-                    // Inspired from: https://digitalsystemdesign.in/wp-content/uploads/2021/10/FFT16.png
-
-                    data[idxA] = data[idxA] + data[idxB];
-                    data[idxB + blockSize] = (data[idxA] - data[idxB]) * _twiddleFactors[idxT];
-                }
+                outBuffer[idx] = (idx % currentFftSize) < (currentFftSize / 2) ?
+                    inBuffer[idx] + inBuffer[(int)(idx + halfFftSize)] :
+                    (new ComplexFloat(-1.0F, 0.0F) * inBuffer[idx]
+                        + inBuffer[(int)(idx - halfFftSize)])
+                        * _twiddleFactors[(idx % halfFftSize) * currentTwiddleStride];
             }
+            // We half the FFT size at each iteration, double the stride, and swap the buffers.
+            currentFftSize /= 2;
+            currentTwiddleStride *= 2;
+            // Span<T> can't be used for tuple-based swapping, so we use a temporary variable.
+            var temp = inBuffer;
+            inBuffer = outBuffer;
+            outBuffer = temp;
+        }
 
-            // Example: on a 16-point FFT, the first iteration will have a blockSize of 8,
-            // and thus we'll use the first 8 twiddle factors. The second iteration will
-            // have a blockSize of 4, and thus we'll use the twiddle factors 0, 2, 4, 6.
-            // The third iteration will have a blockSize of 2, and thus we'll use the
-            // twiddle factors 0, 4. The fourth iteration will have a blockSize of 1,
-            // and thus we'll use the twiddle factor 0.
-            twiddleIdxMultiplier *= 2;
+        // At the end, we check whether we have to copy the result back to the `data` buffer.
+        // Remember that we swapped the buffers at the end of the last iteration,
+        // so we compare against inBuffer.
+        if (inBuffer != data)
+        {
+            inBuffer.CopyTo(data);
         }
     }
 }
