@@ -95,7 +95,7 @@ public class FftFloat
             {
                 var halfFftSize = currentFftSize / 2;
 
-                outBuffer[idx] = (idx % currentFftSize) < (currentFftSize / 2) ?
+                outBuffer[idx] = (idx & (currentFftSize - 1)) < (currentFftSize >> 1) ?
                     inBuffer[idx] + inBuffer[(int)(idx + halfFftSize)] :
                     (-inBuffer[idx] + inBuffer[(int)(idx - halfFftSize)])
                         * _twiddleFactors[(idx % halfFftSize) * currentTwiddleStride];
