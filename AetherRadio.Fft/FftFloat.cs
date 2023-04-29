@@ -6,10 +6,10 @@ namespace AetherRadio.Fft;
 
 public class FftFloat
 {
-    private readonly uint _length;
+    private readonly int _length;
     private readonly ComplexFloat[] _twiddleFactors;
 
-    public FftFloat(uint length)
+    public FftFloat(int length)
     {
         Debug.Assert(Functions.IsPowerOfTwo(length),
             "The FFT needs to be a power of two!");
@@ -18,7 +18,7 @@ public class FftFloat
         _twiddleFactors = new ComplexFloat[_length / 2];
 
         // Compute the twiddle factors
-        for (uint i = 0; i < _twiddleFactors.Length; i++)
+        for (var i = 0; i < _twiddleFactors.Length; i++)
         {
             var angle = -2.0f * MathF.PI * i / _length;
             _twiddleFactors[i] = ComplexFloat.FromPolar(1, angle);
@@ -95,8 +95,8 @@ public class FftFloat
             for (var idx = 0; idx < currentFftSize; ++idx)
             {
                 outBuffer[idx] = (idx & (currentFftSize - 1)) < halfFftSize ?
-                    inBuffer[idx] + inBuffer[(int)(idx + halfFftSize)] :
-                    (-inBuffer[idx] + inBuffer[(int)(idx - halfFftSize)])
+                    inBuffer[idx] + inBuffer[idx + halfFftSize] :
+                    (-inBuffer[idx] + inBuffer[idx - halfFftSize])
                         * _twiddleFactors[(idx % halfFftSize) * currentTwiddleStride];
             }
             // We half the FFT size at each iteration, double the stride, and swap the buffers.
