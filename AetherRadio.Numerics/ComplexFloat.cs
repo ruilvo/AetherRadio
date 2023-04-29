@@ -73,7 +73,8 @@ public struct ComplexFloat
 
     public static ComplexFloat operator *(ComplexFloat a, ComplexFloat b)
     {
-        return FromPolar(a.Magnitude * b.Magnitude, a.Phase + b.Phase);
+        return new ComplexFloat(a.Real * b.Real - a.Imaginary * b.Imaginary,
+            a.Real * b.Imaginary + a.Imaginary * b.Real);
     }
 
     public static ComplexFloat operator *(ComplexFloat a, float b)
@@ -88,7 +89,10 @@ public struct ComplexFloat
 
     public static ComplexFloat operator /(ComplexFloat a, ComplexFloat b)
     {
-        return FromPolar(a.Magnitude / b.Magnitude, a.Phase - b.Phase);
+        var denominator = b.Real * b.Real + b.Imaginary * b.Imaginary;
+        var real = (a.Real * b.Real + a.Imaginary * b.Imaginary) / denominator;
+        var imag = (a.Imaginary * b.Real - a.Real * b.Imaginary) / denominator;
+        return new ComplexFloat(real, imag);
     }
 
     public static ComplexFloat operator /(ComplexFloat a, float b)
