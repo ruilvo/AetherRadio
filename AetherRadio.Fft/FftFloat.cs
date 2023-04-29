@@ -89,13 +89,12 @@ public class FftFloat
         // Let's perform the FFT, stage by stage, until we reach the last stage (size 2).
         while (currentFftSize > 1)
         {
+            var halfFftSize = currentFftSize / 2;
+
             // We iterate over the input buffer, and write the result to the output buffer.
-            // TODO(ruilvo): Create and bechmark LINQ and SIMD versions.
             for (var idx = 0; idx < currentFftSize; ++idx)
             {
-                var halfFftSize = currentFftSize / 2;
-
-                outBuffer[idx] = (idx & (currentFftSize - 1)) < (currentFftSize >> 1) ?
+                outBuffer[idx] = (idx & (currentFftSize - 1)) < halfFftSize ?
                     inBuffer[idx] + inBuffer[(int)(idx + halfFftSize)] :
                     (-inBuffer[idx] + inBuffer[(int)(idx - halfFftSize)])
                         * _twiddleFactors[(idx % halfFftSize) * currentTwiddleStride];
