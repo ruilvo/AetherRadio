@@ -1,7 +1,7 @@
 ﻿namespace AetherRadio.Numerics.Tests;
 
 [TestFixture]
-public class FunctionsTests
+public class IsPowerOfTwoTests
 {
     [Test]
     public void IsPowerOfTwoShouldReturnTrueForPowersOfTwo([Range(0, 16)] int x)
