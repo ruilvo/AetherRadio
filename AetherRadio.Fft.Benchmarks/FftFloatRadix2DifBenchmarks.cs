@@ -4,15 +4,15 @@ using BenchmarkDotNet.Attributes;
 
 namespace AetherRadio.Fft.Benchmarks;
 
-public class FftSingleBenchmarks
+public class FftFloatRadix2DifBenchmarks
 {
-    private readonly FftFloat _fft;
+    private readonly FftFloatRadix2Dif _fft;
     private readonly ComplexFloat[] _input;
     private ComplexFloat[] _output;
 
-    public FftSingleBenchmarks()
+    public FftFloatRadix2DifBenchmarks()
     {
-        _fft = new FftFloat(1024);
+        _fft = new FftFloatRadix2Dif(1024);
         _input = new ComplexFloat[1024];
 
         for (var i = 0; i < _input.Length; ++i)

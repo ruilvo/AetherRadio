@@ -6,6 +6,6 @@ public class Program
 {
     public static void Main(string[] args)
     { 
-        BenchmarkRunner.Run<FftSingleBenchmarks>();
+        BenchmarkRunner.Run<FftFloatRadix2DifBenchmarks>();
     }
 }

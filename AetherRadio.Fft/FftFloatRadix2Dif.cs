@@ -4,12 +4,12 @@ using AetherRadio.Numerics;
 
 namespace AetherRadio.Fft;
 
-public class FftFloat
+public class FftFloatRadix2Dif
 {
     private readonly int _length;
     private readonly ComplexFloat[] _twiddleFactors;
 
-    public FftFloat(int length)
+    public FftFloatRadix2Dif(int length)
     {
         Debug.Assert(Functions.IsPowerOfTwo(length),
             "The FFT needs to be a power of two!");

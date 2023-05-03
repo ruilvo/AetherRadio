@@ -3,7 +3,7 @@ using AetherRadio.Numerics;
 namespace AetherRadio.Fft.Tests;
 
 [TestFixture]
-public class FftFloatTests
+public class FftFloatRadix2DifTests
 {
     // TODO(ruilvo): Check below.
     //  - Test with FFTs of larger sizes.
@@ -14,13 +14,13 @@ public class FftFloatTests
     [Test]
     public void TestMostBasicFft()
     {
-        const uint size = 2;
+        const int size = 2;
 
-        var fft = new FftFloat(size);
+        var fft = new FftFloatRadix2Dif(size);
 
         var input = new ComplexFloat[]
         {
-            new(1.0F, 0.0F), 
+            new(1.0F, 0.0F),
             new(0.0F, 0.0F)
         };
 
@@ -46,9 +46,9 @@ public class FftFloatTests
     [Test]
     public void TestReallySimpleFft()
     {
-        const uint size = 2;
+        const int size = 2;
 
-        var fft = new FftFloat(size);
+        var fft = new FftFloatRadix2Dif(size);
 
         var input = new ComplexFloat[]
         {
@@ -78,9 +78,9 @@ public class FftFloatTests
     [Test]
     public void TestSimpleFftWithImaginaryPart()
     {
-        const uint size = 2;
+        const int size = 2;
 
-        var fft = new FftFloat(size);
+        var fft = new FftFloatRadix2Dif(size);
 
         var input = new ComplexFloat[]
         {
