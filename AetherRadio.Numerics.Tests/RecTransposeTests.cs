@@ -11,10 +11,10 @@ public class RecTransposeTests
         int[] input = { 42 };
         int[] output = new int[1];
 
-        var A = new ReadOnlySpan2D<int>(input, 1, 1);
-        var B = new Span2D<int>(output, 1, 1);
+        var a = new ReadOnlySpan2D<int>(input, 1, 1);
+        var b = new Span2D<int>(output, 1, 1);
 
-        Functions.RecTranspose<int>(A, B);
+        Functions.RecTranspose<int>(a, b);
 
         Assert.That(input[0], Is.EqualTo(output[0]));
     }
@@ -25,10 +25,10 @@ public class RecTransposeTests
         int[] input = { 42, 43 };
         int[] output = new int[2];
 
-        var A = new ReadOnlySpan2D<int>(input, 1, 2);
-        var B = new Span2D<int>(output, 2, 1);
+        var a = new ReadOnlySpan2D<int>(input, 1, 2);
+        var b = new Span2D<int>(output, 2, 1);
 
-        Functions.RecTranspose<int>(A, B);
+        Functions.RecTranspose<int>(a, b);
 
         Assert.Multiple(() =>
         {
@@ -43,10 +43,10 @@ public class RecTransposeTests
         int[,] input = { { 42, 0 }, { 0, 43 } };
         int[,] output = new int[2, 2];
 
-        var A = new ReadOnlySpan2D<int>(input);
-        var B = new Span2D<int>(output);
+        var a = new ReadOnlySpan2D<int>(input);
+        var b = new Span2D<int>(output);
 
-        Functions.RecTranspose<int>(A, B);
+        Functions.RecTranspose<int>(a, b);
 
         Assert.Multiple(() =>
         {
@@ -58,16 +58,16 @@ public class RecTransposeTests
     }
 
     [Test]
-    public void TransposingA4by4NonDiagonalMatrix()
+    public void TransposingA4By4NonDiagonalMatrix()
     {
         int[,] input = { { 11, 22 }, { 33, 44 } };
         int[,] output = new int[2, 2];
         int[,] expected = { { 11, 33 }, { 22, 44 } };
 
-        var A = new ReadOnlySpan2D<int>(input);
-        var B = new Span2D<int>(output);
+        var a = new ReadOnlySpan2D<int>(input);
+        var b = new Span2D<int>(output);
 
-        Functions.RecTranspose<int>(A, B);
+        Functions.RecTranspose<int>(a, b);
 
         Assert.Multiple(() =>
         {
@@ -85,10 +85,10 @@ public class RecTransposeTests
         int[,] output = new int[3, 2];
         int[,] expected = { { 11, 44 }, { 22, 55 }, { 33, 66 } };
 
-        var A = new ReadOnlySpan2D<int>(input);
-        var B = new Span2D<int>(output);
+        var a = new ReadOnlySpan2D<int>(input);
+        var b = new Span2D<int>(output);
 
-        Functions.RecTranspose<int>(A, B);
+        Functions.RecTranspose<int>(a, b);
 
         Assert.Multiple(() =>
         {
