@@ -4,13 +4,8 @@ using CommunityToolkit.HighPerformance;
 
 namespace AetherRadio.Numerics;
 
-public static class Functions
+public static partial class Functions
 {
-    public static bool IsPowerOfTwo(int value)
-    {
-        return value != 0 && (value & (value - 1)) == 0;
-    }
-
     public static void RecTranspose<T>(
     ReadOnlySpan2D<T> A /* input */,
     Span2D<T> B /* output */)
@@ -33,7 +28,7 @@ public static class Functions
 
         if (nCols >= mRows)
         {
-            int partitionPoint = nCols / 2;
+            var partitionPoint = nCols / 2;
 
             var A0 = A[.., ..partitionPoint];
             var A1 = A[.., partitionPoint..];
@@ -45,7 +40,7 @@ public static class Functions
         }
         else
         {
-            int partitionPoint = mRows / 2;
+            var partitionPoint = mRows / 2;
 
             var A0 = A[..partitionPoint, ..];
             var A1 = A[partitionPoint.., ..];
