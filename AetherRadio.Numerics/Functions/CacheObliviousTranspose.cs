@@ -21,7 +21,8 @@ public static partial class Functions
         var colsOut = rows; // = output.Width;
 
         // If the input or output spans are too small, use a simple loop to transpose them
-        if (rows * cols <= 16 || rowsOut * colsOut <= 16)
+        const int threshold = 32;
+        if (rows * cols <= threshold || rowsOut * colsOut <= threshold)
         {
             for (var i = 0; i < rows; i++)
             {
