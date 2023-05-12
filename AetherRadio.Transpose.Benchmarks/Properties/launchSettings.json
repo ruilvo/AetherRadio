@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AetherRadio.Transpose.Benchmarks": {
+      "commandName": "Project",
+      "commandLineArgs": "--filter *"
+    }
+  }
+}
