@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AetherRadio.Fft", "AetherRa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AetherRadio.Fft.Tests", "AetherRadio.Fft.Tests\AetherRadio.Fft.Tests.csproj", "{85D4A794-FEF0-46EA-B593-D78D865E1851}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetherRadio.Fft.Benchmarks", "AetherRadio.Fft.Benchmarks\AetherRadio.Fft.Benchmarks.csproj", "{340A6BD2-BDB0-4945-BCD4-9B2E8A6154B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AetherRadio.Fft.Benchmarks", "AetherRadio.Fft.Benchmarks\AetherRadio.Fft.Benchmarks.csproj", "{340A6BD2-BDB0-4945-BCD4-9B2E8A6154B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AetherRadio.Transpose.Benchmarks", "AetherRadio.Transpose.Benchmarks\AetherRadio.Transpose.Benchmarks.csproj", "{FE96CDD8-C9B5-4AA5-9098-AED7A0DB6462}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{340A6BD2-BDB0-4945-BCD4-9B2E8A6154B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{340A6BD2-BDB0-4945-BCD4-9B2E8A6154B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{340A6BD2-BDB0-4945-BCD4-9B2E8A6154B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE96CDD8-C9B5-4AA5-9098-AED7A0DB6462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE96CDD8-C9B5-4AA5-9098-AED7A0DB6462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE96CDD8-C9B5-4AA5-9098-AED7A0DB6462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE96CDD8-C9B5-4AA5-9098-AED7A0DB6462}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
